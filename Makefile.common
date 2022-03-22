@@ -1,0 +1,55 @@
+CFLAGS += -Isrc -Iinclude -DDLL_EXPORT -DPIC -DHAVE_CONFIG_H -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
+
+OBJECTS = $(DEST)/api.o \
+	$(DEST)/reader.o \
+	$(DEST)/scanner.o \
+	$(DEST)/parser.o \
+	$(DEST)/loader.o \
+	$(DEST)/writer.o \
+	$(DEST)/emitter.o \
+	$(DEST)/dumper.o
+
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@
+
+all: pre-make $(TARGET) post-make
+
+pre-make:
+	mkdir -p $(DEST)/NSK
+	$(MAKE) -C include
+
+post-make:
+	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM)
+
+clean:
+	$(MAKE) -C include clean
+	$(MAKE) -C tests clean
+	rm -rf $(OBJECTS) $(TARGET) $(LIB) $(DEST) *.o *.so *.dll
+
+$(TARGET): $(LIB)
+	xld $(LDFLAGS) -all $< -shared -export_all \
+		-lcre -lcrtl -lossk -lossf -lsec -li18n -licnv \
+   		-losse -linet -lossh -lossc -no_optional_lib -o $@
+
+$(LIB): $(OBJECTS)	
+	ar cru $@ $^
+	ranlib $(LIB)
+
+$(DEST)/api.o: src/api.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/reader.o: src/reader.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/scanner.o: src/scanner.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/parser.o: src/parser.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/loader.o: src/loader.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/writer.o: src/writer.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/emitter.o: src/emitter.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/dumper.o: src/dumper.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: pre-make clean

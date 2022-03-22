@@ -1,0 +1,58 @@
+CFLAGS += -I. -I../src -I../include -DDLL_EXPORT -DPIC -DHAVE_CONFIG_H -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
+LDFLAGS +=
+LIBS=$(LIB)
+TARGETS=run-scanner \
+	run-parser \
+	run-loader \
+	run-emitter \
+	run-dumper \
+	example-reformatter \
+	example-reformatter-alt \
+	example-deconstructor \
+	example-deconstructor-alt \
+	run-parser-test-suite \
+	run-emitter-test-suite \
+	test-version \
+	test-reader
+	
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@
+
+all: pre-make $(TARGETS) post-make
+
+pre-make:
+	mkdir -p $(DEST)/NSK
+
+post-make:
+
+clean:
+	rm -rf $(TARGETS) *.o *.so *.dll
+
+run-scanner: run-scanner.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+run-parser: run-parser.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+run-loader: run-loader.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+run-emitter: run-emitter.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+run-dumper: run-dumper.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+example-reformatter: example-reformatter.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+example-reformatter-alt: example-reformatter-alt.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+example-deconstructor: example-deconstructor.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+example-deconstructor-alt: example-deconstructor-alt.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+run-parser-test-suite: run-parser-test-suite.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+run-emitter-test-suite: run-emitter-test-suite.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+test-version: test-version.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+test-reader: test-reader.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $< $(LIBS) -o $@
+
+.PHONY: pre-make clean
