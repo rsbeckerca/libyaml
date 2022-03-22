@@ -1,0 +1,6 @@
+all:
+	echo "Nothing to do."
+
+clean:
+
+.PHONY: all

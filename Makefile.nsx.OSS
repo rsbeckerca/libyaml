@@ -1,0 +1,15 @@
+# Makefile for building via NSDEE J and L series based on build targets
+#
+BUILD_PRODUCT=libyaml
+TARGET_PLATFORM=nsx
+BUILD_PLATFORM=OSS
+BUILDER=L01
+TARGET=libyaml.so
+LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
+DEST=Debug/$(TARGET_PLATFORM)/
+CFLAGS=-Wextensions -O0 $(INCLUDES)
+LDFLAGS=-set inspect on
+CC=c99
+LD=xld
+
+include Makefile.common

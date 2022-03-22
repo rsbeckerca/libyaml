@@ -1,0 +1,10 @@
+# Makefile for building via OSS L series based on build targets
+#
+DEST=../Debug/nsx/
+CFLAGS=-Wextensions -O0 $(INCLUDES) -Wsystype=guardian
+LDFLAGS=-Winspect -set systype guardian
+LIB=$(DEST)/libyaml.a
+CC=c99
+LD=xld
+
+include Makefile.common

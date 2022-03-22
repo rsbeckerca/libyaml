@@ -1,0 +1,10 @@
+# Makefile for building via NSDEE J and L series based on build targets
+#
+DEST=../Debug/nsx/
+CFLAGS=-Wextensions -O0 $(INCLUDES)
+LDFLAGS=-Winspect
+LIB=$(DEST)/libyaml.a
+CC=c99
+LD=xld
+
+include Makefile.common

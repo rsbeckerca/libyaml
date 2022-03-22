@@ -25,8 +25,8 @@ post-make:
 	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM)
 
 clean:
-	$(MAKE) -C include clean
-	$(MAKE) -C tests clean
+	$(MAKE) -C include -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) clean
+	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) clean
 	rm -rf $(OBJECTS) $(TARGET) $(LIB) $(DEST) *.o *.so *.dll
 
 $(TARGET): $(LIB)
