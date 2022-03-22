@@ -1,3 +1,4 @@
+VPROC:=$(shell ./vproc.sh BUILDER L01)
 CFLAGS += -Isrc -Iinclude -DDLL_EXPORT -DPIC -DHAVE_CONFIG_H -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
 CFLAGS += -Wnowarn=770,203
 
@@ -8,7 +9,8 @@ OBJECTS = $(DEST)/api.o \
 	$(DEST)/loader.o \
 	$(DEST)/writer.o \
 	$(DEST)/emitter.o \
-	$(DEST)/dumper.o
+	$(DEST)/dumper.o \
+	$(DEST)/vproc.o
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -52,5 +54,7 @@ $(DEST)/emitter.o: src/emitter.c
 	$(CC) $(CFLAGS) -c $< -o $@
 $(DEST)/dumper.o: src/dumper.c
 	$(CC) $(CFLAGS) -c $< -o $@
+$(DEST)/vproc.o: src/vproc.c
+	$(CC) $(CFLAGS) -c "-DVPROC=$(VPROC)" $< -o $@
 
 .PHONY: pre-make clean

@@ -1,0 +1,61 @@
+#!/bin/sh
+# Copyright (c) 2021-2022 Nexbridge Inc. All Rights Reserved.
+#
+# Pull our version out of git. This assumes there is a tag of the form
+#	n.n.n or T1198Lnn.spr.n-n
+# or
+#	n.n.n-rc1 or T1198Lnn.spr.n-n-rc1
+# in the history tree immediately accessible.
+#
+# That way, we get a string that looks like 1.0.0.2.gf285416-rc1 or
+# 1.0.0.2.gf285416 or T1198L01.AAD.4.ggf285416-rc1 or T1198L01.AAD.4.ggf285416
+#
+# The extract digit is the distance of the commit from the tag.
+#
+# This script is used by the Makefile as part of the build process to inject
+# version numbers into the product.
+
+REPORT=f
+
+while [ "$1" != "" ]; do
+	case $1 in
+	BUILDER)
+		shift
+		BUILDER=$1
+		shift
+		;;
+	REPORT)
+		shift
+		REPORT=t
+		;;
+	*)
+		echo 2>&1 "Unknown option $1"
+		exit 1
+		;;
+	esac
+done
+
+if [ "$REPORT" = "t" ]; then
+	echo 1>&2 "Computing Version using $BUILDER"
+fi
+
+MATCHER=unknown
+case $BUILDER in
+J*|OSS-J*)
+	MATCHER="*"
+	;;
+L*|OSS-L*)	
+	MATCHER="*"
+	;;
+esac
+
+if [ "$REPORT" = "t" ]; then
+	echo 1>&2 "version using tag matcher $MATCHER as prefix, finding tag:" \
+		`git describe --long --first-parent --dirty=.dirty --match="${MATCHER}*"`
+fi
+
+git describe --long --first-parent --dirty=.dirty --match="${MATCHER}*" | \
+    tr -d '\r' | \
+	sed '1,$s/^\([^-]*\)-\([^-]*\)-\([^-]*\)$/\1.\2.\3/' | \
+	sed '1,$s/^\([^-]*\)-\([^-]*\)-\([^-]*\)-\([^-]*\)$/\1.\3.\4-\2/' | \
+	sed '1,$s/^\(.*\).dirty\(.*\)/\1\2-dirty/'
