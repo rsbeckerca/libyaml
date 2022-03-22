@@ -239,17 +239,19 @@
                 				
                 <extensions>
                     					
-                    <extension id="org.eclipse.cdt.core.Cygwin_PE64" point="org.eclipse.cdt.core.BinaryParser"/>
-                    					
-                    <extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="com.hp.nsdee.devp.core.NONSTOP_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
                     					
                     <extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
                     					
-                    <extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-                    					
                     <extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
                     					
-                    <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="com.hp.nsdee.devp.core.parsers.CParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="com.hp.nsdee.devp.core.parsers.LinkerParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="com.hp.nsdee.devp.core.parsers.CobParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="com.hp.nsdee.devp.core.parsers.TalParser" point="org.eclipse.cdt.core.ErrorParser"/>
                     				
                 </extensions>
                 			
@@ -261,57 +263,91 @@
                     					
                     <folderInfo id="cdt.managedbuild.config.gnu.cygwin.so.debug.1782658728.1591202483." name="/" resourcePath="">
                         						
-                        <toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.so.debug.1818010653" name="Cygwin GCC" superClass="cdt.managedbuild.toolchain.gnu.cygwin.so.debug">
+                        <toolChain id="nsdee.managedbuild.toolchain.ccpp.tnsx.base.57465370" name="C-C++ TNS-X Tools" superClass="nsdee.managedbuild.toolchain.ccpp.tnsx.base">
                             							
-                            <targetPlatform id="cdt.managedbuild.target.gnu.platform.cygwin.so.debug.1468235814" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.cygwin.so.debug"/>
+                            <targetPlatform archList="all" binaryParser="com.hp.nsdee.devp.core.NONSTOP_ELF" id="nsdee.managedbuild.ccpp.target.platform.tnsx.base.301384943" name="Debug Platform" osList="win32" superClass="nsdee.managedbuild.ccpp.target.platform.tnsx.base"/>
                             							
-                            <builder arguments="-f Makefile.nsx.Nsdee" buildPath="${workspace_loc:/libyaml}/" command="make" id="cdt.managedbuild.target.gnu.builder.cygwin.so.debug.453543986" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.cygwin.so.debug"/>
+                            <builder arguments="-f Makefile.nsx.Nsdee" command="make" customBuilderProperties="nsdee.deployDest=|nsdee.deployUser=|nsdee.preDeployTarget=|nsdee.deployFileName=|nsdee.deployTarget=|nsdee.postDeployTarget=|nsdee.deploySystem=|" id="nsdee.managedbuild.ccpp.target.builder.tnsx.base.1419996362" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="NonStop Make Builder" superClass="nsdee.managedbuild.ccpp.target.builder.tnsx.base"/>
                             							
-                            <tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.so.debug.1695002843" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.so.debug">
+                            <tool id="nsdee.managedbuild.ccpp.tool.c.linker.tnsx.base.398855601" name="C Linker (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.c.linker.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.c.compiler.tnsx.base.986318682" name="C Compiler (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.c.compiler.tnsx.base">
                                 								
-                                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.862834675" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+                                <inputType id="nsdee.managedbuild.tool.c.compiler.input.1819386359" superClass="nsdee.managedbuild.tool.c.compiler.input"/>
                                 							
                             </tool>
                             							
-                            <tool id="cdt.managedbuild.tool.gnu.archiver.cygwin.base.1512945904" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.cygwin.base"/>
-                            							
-                            <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.debug.732765942" name="Cygwin C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.debug">
+                            <tool id="nsdee.managedbuild.ccpp.tool.c.compiler.sqlmp.tnsx.base.511104773" name="C Compiler with SQL/MP (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.c.compiler.sqlmp.tnsx.base">
                                 								
-                                <option id="gnu.cpp.compiler.cygwin.so.debug.option.optimization.level.1338812688" name="Optimization Level" superClass="gnu.cpp.compiler.cygwin.so.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+                                <inputType id="nsdee.managedbuild.tool.c.compiler.input.202516048" superClass="nsdee.managedbuild.tool.c.compiler.input"/>
                                 								
-                                <option defaultValue="gnu.cpp.compiler.debugging.level.max" id="gnu.cpp.compiler.cygwin.so.debug.option.debugging.level.623124405" name="Debug Level" superClass="gnu.cpp.compiler.cygwin.so.debug.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
-                                								
-                                <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.43691787" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin"/>
+                                <inputType id="nsdee.managedbuild.tool.c.compiler.pre.input.122624757" superClass="nsdee.managedbuild.tool.c.compiler.pre.input"/>
                                 							
                             </tool>
                             							
-                            <tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.debug.886459737" name="Cygwin C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.debug">
+                            <tool id="nsdee.managedbuild.ccpp.tool.c.sqlmp.tnsx.base.1200390289" name="C SQL/MP Compile and Deploy (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.c.sqlmp.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.c.sqlmx.tnsx.base.811434311" name="C/C++ SQL/MX Compile (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.c.sqlmx.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.c.sqlmx.pre.tnsx.base.1313591264" name="C/C++ SQL/MX Preprocessor (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.c.sqlmx.pre.tnsx.base">
                                 								
-                                <option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.cygwin.so.debug.option.optimization.level.1917681344" name="Optimization Level" superClass="gnu.c.compiler.cygwin.so.debug.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+                                <inputType id="nsdee.managedbuild.tool.c.sqlmx.pre.input.2083651613" superClass="nsdee.managedbuild.tool.c.sqlmx.pre.input"/>
                                 								
-                                <option defaultValue="gnu.c.debugging.level.max" id="gnu.c.compiler.cygwin.so.debug.option.debugging.level.522188505" name="Debug Level" superClass="gnu.c.compiler.cygwin.so.debug.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
-                                								
-                                <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.87344793" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
+                                <inputType id="nsdee.managedbuild.tool.cpp.sqlmx.pre.input.1802158771" superClass="nsdee.managedbuild.tool.cpp.sqlmx.pre.input"/>
                                 							
                             </tool>
                             							
-                            <tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.debug.1904101575" name="Cygwin C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.debug">
+                            <tool id="nsdee.managedbuild.ccpp.tool.cpp.linker.tnsx.base.382114673" name="C++ Linker (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.cpp.linker.tnsx.base">
                                 								
-                                <option defaultValue="true" id="gnu.c.link.cygwin.so.debug.option.shared.368909262" name="Shared (-shared)" superClass="gnu.c.link.cygwin.so.debug.option.shared" valueType="boolean"/>
-                                							
-                            </tool>
-                            							
-                            <tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.debug.2078403165" name="Cygwin C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.debug">
-                                								
-                                <option defaultValue="true" id="gnu.cpp.link.cygwin.so.debug.option.shared.1225832414" name="Shared (-shared)" superClass="gnu.cpp.link.cygwin.so.debug.option.shared" valueType="boolean"/>
-                                								
-                                <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.868257640" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+                                <inputType id="nsdee.managedbuild.tool.cpp.linker.input.465274871" superClass="nsdee.managedbuild.tool.cpp.linker.input">
                                     									
-                                    <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+                                    <additionalInput kind="additionalinput" paths="$(USER_OBJS_WOESC)"/>
                                     									
                                     <additionalInput kind="additionalinput" paths="$(LIBS)"/>
+                                    									
+                                    <additionalInput kind="additionaldependency" paths="$(USER_OBJS)"/>
                                     								
                                 </inputType>
+                                							
+                            </tool>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.cpp.compiler.tnsx.base.322215933" name="C++ Compiler (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.cpp.compiler.tnsx.base">
+                                								
+                                <inputType id="nsdee.managedbuild.tool.cpp.compiler.input.1640672961" superClass="nsdee.managedbuild.tool.cpp.compiler.input"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.deploy.tnsx.base.2053062558" name="Deploy Tool" superClass="nsdee.managedbuild.ccpp.tool.deploy.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.profmrg.tnsx.base.963230946" name="Profmrg Tool" superClass="nsdee.managedbuild.ccpp.tool.profmrg.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.codecov.tnsx.base.103142142" name="Code coverage Tool" superClass="nsdee.managedbuild.ccpp.tool.codecov.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.cobol.compiler.tnsx.base.901190612" name="COBOL Compiler (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.cobol.compiler.tnsx.base">
+                                								
+                                <inputType id="nsdee.managedbuild.tool.cobol.compiler.input.465800598" superClass="nsdee.managedbuild.tool.cobol.compiler.input"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.cobol.compiler.sqlmp.tnsx.base.1607261938" name="COBOL Compiler with SQL/MP (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.cobol.compiler.sqlmp.tnsx.base">
+                                								
+                                <inputType id="nsdee.managedbuild.tool.cobol.compiler.input.1518664082" superClass="nsdee.managedbuild.tool.cobol.compiler.input"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.cobol.sqlmp.tnsx.base.1184466807" name="COBOL SQL/MP Compile and Deploy (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.cobol.sqlmp.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.cobol.sqlmx.tnsx.base.1411313260" name="COBOL SQL/MX Compile (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.cobol.sqlmx.tnsx.base"/>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.cobol.sqlmx.pre.tnsx.base.1577296524" name="COBOL SQL/MX Preprocessor (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.cobol.sqlmx.pre.tnsx.base">
+                                								
+                                <inputType id="nsdee.managedbuild.tool.cobol.sqlmx.pre.input.152351889" superClass="nsdee.managedbuild.tool.cobol.sqlmx.pre.input"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="nsdee.managedbuild.ccpp.tool.tal.compiler.tnsx.base.978054077" name="pTAL Compiler (TNS/X)" superClass="nsdee.managedbuild.ccpp.tool.tal.compiler.tnsx.base">
+                                								
+                                <inputType id="nsdee.managedbuild.tool.tal.compiler.input.2146760323" superClass="nsdee.managedbuild.tool.tal.compiler.input"/>
                                 							
                             </tool>
                             						

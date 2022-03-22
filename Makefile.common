@@ -1,5 +1,5 @@
 CFLAGS += -Isrc -Iinclude -DDLL_EXPORT -DPIC -DHAVE_CONFIG_H -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
-CFLAGS += -Wnowarn=770
+CFLAGS += -Wnowarn=770,203
 
 OBJECTS = $(DEST)/api.o \
 	$(DEST)/reader.o \
