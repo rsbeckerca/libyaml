@@ -19,7 +19,7 @@ all: pre-make $(TARGET) post-make
 
 pre-make:
 	mkdir -p $(DEST)/NSK
-	$(MAKE) -C include
+	$(MAKE) -C include -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM)
 
 post-make:
 	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM)
