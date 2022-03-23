@@ -30,7 +30,7 @@ clean:
 	rm -rf $(OBJECTS) $(TARGET) $(LIB) $(DEST) *.o *.so *.dll
 
 $(TARGET): $(LIB)
-	xld $(LDFLAGS) -all $< -shared -export_all \
+	$(LD) $(LDFLAGS) -all $< -shared -export_all \
 		-lcre -lcrtl -lossk -lossf -lsec -li18n -licnv \
    		-losse -linet -lossh -lossc -no_optional_lib -o $@
 
