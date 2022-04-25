@@ -2,7 +2,7 @@
 #
 DEST=../Debug/nse/
 CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian
-LDFLAGS=-Winspect -set systype guardian
+LDFLAGS=-Winspect -Wsystype=guardian
 LIB=$(DEST)/libyaml.a
 CC=c99
 LD=eld

@@ -4,11 +4,11 @@ BUILD_PRODUCT=libyaml
 TARGET_PLATFORM=nse
 BUILD_PLATFORM=Nsdee
 BUILDER=L01
-TARGET=libyaml.dll
+TARGET=libyaml.so
 LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
 DEST=Debug/$(TARGET_PLATFORM)/
-CFLAGS=-Wextensions -O2 $(INCLUDES)
-LDFLAGS=-set inspect on
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss
+LDFLAGS=-set inspect on -set systype oss
 CC=c99
 LD=eld
 
