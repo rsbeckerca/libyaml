@@ -75,6 +75,7 @@
 			        		echo 'About to start the J-series Guardian production build'
 				            sh 'make -f Makefile.nse.GRD clean'
 				            sh 'make -f Makefile.nse.GRD TARGET=../libyaml.J.dll'
+					        sh 'cp -p include/yaml.h ..'
 					    }
 			        	withEnv(['COMP_ROOT=C:\\Program Files (x86)\\HPE NonStop\\J06.20',
 			        		'NONSTOPOSVERSION=J06.20',
@@ -85,6 +86,7 @@
 			        		echo 'About to start the J-series OSS build'
 				            sh 'make -f Makefile.nse.Nsdee clean'
 				            sh 'make -f Makefile.nse.Nsdee TARGET=../libyaml.J.so'
+					        sh 'cp -p include/yaml.h ..'
 					    }
 			        	withEnv(['COMP_ROOT=C:\\Program Files (x86)\\HPE NonStop\\L16.05',
 			        		'NONSTOPOSVERSION=L16.05',
@@ -94,6 +96,7 @@
 			        		
 				            sh 'make -f Makefile.nsx.GRD clean'
 				            sh "make -f Makefile.nsx.GRD NONSTOPOSVERSION=${NONSTOPOSVERSION} TARGET=../libyaml.L.dll"
+					        sh 'cp -p include/yaml.h ..'
 					    }
 			        	withEnv(['COMP_ROOT=C:\\Program Files (x86)\\HPE NonStop\\L16.05',
 			        		'NONSTOPOSVERSION=L16.05',
@@ -103,6 +106,7 @@
 			        		
 				            sh 'make -f Makefile.nsx.Nsdee clean'
 				            sh "make -f Makefile.nsx.Nsdee NONSTOPOSVERSION=${NONSTOPOSVERSION} TARGET=../libyaml.L.so"
+					        sh 'cp -p include/yaml.h ..'
 					    }
 					}
 				}
