@@ -7,7 +7,7 @@ BUILDER=H01
 TARGET=libyaml.so
 LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
 DEST=Debug/$(TARGET_PLATFORM)/
-CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss -WRVU=$(MIN_J_RVU) $(CFLAGS_J)
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss -WRVU=$(MIN_J_RVU) $(OSS_CFLAGS_J)
 LDFLAGS=-set inspect on -set systype oss $(LD_MODEL_J)
 CC=c99
 LD=eld
