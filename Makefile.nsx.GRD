@@ -2,12 +2,12 @@
 #
 BUILD_PRODUCT=libyaml
 TARGET_PLATFORM=nsx
-BUILD_PLATFORM=OSS
+BUILD_PLATFORM=GRD
 BUILDER=L01
 TARGET=libyaml.dll
 LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
 DEST=Debug/$(TARGET_PLATFORM)/
-CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian -WRVU=$(MIN_L_RVU)
 LDFLAGS=-set inspect on -set systype guardian
 CC=c99
 LD=xld

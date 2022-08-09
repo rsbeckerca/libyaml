@@ -1,8 +1,8 @@
 # Makefile for building via NSDEE J and L series based on build targets
 #
 DEST=../Debug/nsx/
-CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss
-LDFLAGS=-Winspect -Wsystype=oss
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss -WRVU=$(MIN_L_RVU) $(OSS_CFLAGS_L)
+LDFLAGS=-Winspect -Wsystype=oss -WRVU=$(MIN_L_RVU) $(LD_MODEL_L)
 LIB=$(DEST)/libyaml.a
 CC=c99
 LD=xld

@@ -1,3 +1,4 @@
+include ../config.mak.uname
 CFLAGS += -I. -I../src -I../include -DDLL_EXPORT -DPIC -DHAVE_CONFIG_H -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
 LDFLAGS +=
 LIBS=$(LIB)

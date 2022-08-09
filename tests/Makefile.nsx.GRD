@@ -1,8 +1,8 @@
 # Makefile for building via OSS L series based on build targets
 #
 DEST=../Debug/nsx/
-CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian
-LDFLAGS=-Winspect -Wsystype=guardian
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian -WRVU=$(MIN_L_RVU)
+LDFLAGS=-Winspect -Wsystype=guardian -WRVU=$(MIN_L_RVU)
 LIB=$(DEST)/libyaml.a
 CC=c99
 LD=xld

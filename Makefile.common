@@ -1,3 +1,5 @@
+include config.mak.uname
+
 VPROC:=$(shell ./vproc.sh BUILDER L01)
 CFLAGS += -Isrc -Iinclude -DDLL_EXPORT -DPIC -DHAVE_CONFIG_H -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
 CFLAGS += -Wnowarn=770,203

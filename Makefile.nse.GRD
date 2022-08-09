@@ -7,8 +7,8 @@ BUILDER=L01
 TARGET=libyaml.dll
 LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
 DEST=Debug/$(TARGET_PLATFORM)/
-CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian
-LDFLAGS=-set inspect on -set systype guardian
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss -WRVU=$(MIN_J_RVU)
+LDFLAGS=-set inspect on -set systype oss
 CC=c99
 LD=eld
 

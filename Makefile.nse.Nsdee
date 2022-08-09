@@ -7,8 +7,8 @@ BUILDER=L01
 TARGET=libyaml.so
 LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
 DEST=Debug/$(TARGET_PLATFORM)/
-CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss
-LDFLAGS=-set inspect on -set systype oss
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss $(OSS_CFLAGS_J)
+LDFLAGS=-set inspect on -set systype oss $(LD_MODEL_L)
 CC=c99
 LD=eld
 
