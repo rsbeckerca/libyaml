@@ -1,0 +1,10 @@
+# Makefile for building via NSDEE H series based on build targets
+#
+DEST=../Debug/nse/
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss -WRVU=$(MIN_H_RVU) $(OSS_CFLAGS_H)
+LDFLAGS=-Winspect -Wsystype=oss -WRVU=$(MIN_H_RVU) $(OSS_CFLAGS_H)
+LIB=$(DEST)/libyaml.a
+CC=c99
+LD=eld
+
+include Makefile.common
