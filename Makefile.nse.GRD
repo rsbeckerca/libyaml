@@ -9,7 +9,7 @@ BUILDER=L01
 TARGET=libyaml.dll
 LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
 DEST=Debug/$(TARGET_PLATFORM)/
-CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian -WRVU=$(MIN_J_RVU)
+CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian $(GRD_CFLAGS_J) -WRVU=$(MIN_J_RVU)
 LDFLAGS=-set inspect on -set systype guardian $(GRD_LD_MODEL_J)
 CC=c99
 LD=eld

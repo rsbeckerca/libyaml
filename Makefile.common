@@ -16,7 +16,15 @@ OBJECTS = $(DEST)/api.o \
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: pre-make $(TARGET) post-make
-
+$(info ******************************************)
+$(info Main Libyaml builder)
+$(info RVU                 = $(RVU))
+$(info BUILD_PLATFORM      = $(BUILD_PLATFORM))
+$(info TARGET_PLATFORM     = $(TARGET_PLATFORM))
+$(info VPROC               = $(VPROC))
+$(info CFLAGS              = $(CFLAGS))
+$(info ******************************************)
+$(info)
 pre-make:
 	mkdir -p $(DEST)/NSK
 	$(MAKE) -C include -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) \
