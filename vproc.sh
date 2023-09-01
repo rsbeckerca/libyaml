@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright(c) 2021-2022 Nexbridge Inc. All Rights Reserved.
+# Copyright(c) 2021-2023 Nexbridge Inc. All Rights Reserved.
 # Create a VPROC identifier.
 # Usage vproc.sh [ subproduct ]
 #
@@ -14,7 +14,7 @@ while [ "$1" != "" ]; do
 		BUILDER=$1
 		;;
 	*)
-		PRODUCT_NAME=NSGIT_$1
+		PRODUCT_NAME=LIBYAML_$1
 		;;
 	esac
 	shift	

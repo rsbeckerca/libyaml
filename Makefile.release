@@ -1,0 +1,90 @@
+# Release Makefile for NSGit. This can be used when not running in Jenkins
+#
+# This makefile runs recursively with the initial build doing the coordination
+# only and setting parameters.
+#
+
+# The name of this makefile. If the file is renamed, change this variable.
+THIS:=Makefile.release
+
+# Required Makefile Argument RVU is the target RVU, currently J06.20 and L17.08
+# This is for building, not the minimum supported RVU on each platform.
+RVU_J        = J06.20
+RVU_L        = L17.08
+RVU ?=
+
+# Computed variables needed by the the cross compilers.
+RVU_ESC      = $(shell echo $(RVU) | sed 's/\./\\\\./')
+CYGWIN_ROOT  = /cygdrive/c/Program Files (x86)/HPE NonStop
+WINDOWS_ROOT:=C:\\Program Files (x86)\\HPE NonStop
+WINDOWS_ROOT_ESC:=C:\\\\Program Files (x86)\\\\HPE NonStop
+BUILD_PATH="$(CYGWIN_ROOT)/$(RVU)/usr/bin:/usr/local/bin:/usr/bin:/bin"
+export COMP_ROOT:=$(WINDOWS_ROOT)\\$(RVU)
+export NONSTOPOSVERSION := $(RVU)
+export NSDEE_SYS_INCLUDE_PATH:=$(WINDOWS_ROOT)\\$(RVU)\\usr\\include
+export NSDEE_SYS_INCLUDE_PATH_ESC:=$(WINDOWS_ROOT_ESC)\\\\$(RVU_ESC)\\\\usr\\\\include
+export PATH+WHATEVER:=$(WINDOWS_ROOT)\\$(RVU)\\usr\\bin;C:\\cygwin\\bin
+
+# Distribution targets
+TARGET_DIR=/cygdrive/c/Users/Randall S. Becker/OneDrive - Nexbridge Inc/NSGit/Latest Build
+
+all: j-oss l-oss j-guardian l-guardian
+
+clean:
+	$(MAKE) -C . -f Makefile.nse.Nsdee clean
+	$(MAKE) -C . -f Makefile.nsx.Nsdee clean
+	$(MAKE) -C . -f Makefile.nse.GRD clean
+	$(MAKE) -C . -f Makefile.nsx.GRD clean
+
+j-oss:
+	$(MAKE) -f $(THIS) clean
+	$(MAKE) -f $(THIS) RVU=$(RVU_J) TYPE=nse build-oss-actual
+	$(MAKE) -f $(THIS) RVU=$(RVU_J) TYPE=nse deploy-actual DEPLOY_TARGET=J \
+		BASE_FILE=libyaml.so TARGET_BASE_FILE=libyaml.J.so
+
+j-guardian:
+	$(MAKE) -f $(THIS) clean
+	$(MAKE) -f $(THIS) RVU=$(RVU_J) TYPE=nse build-guardian-actual
+	$(MAKE) -f $(THIS) RVU=$(RVU_J) TYPE=nse deploy-actual DEPLOY_TARGET=J \
+		BASE_FILE=libyaml.dll TARGET_BASE_FILE=libyaml.J.dll
+
+l-oss:
+	$(MAKE) -f $(THIS) clean
+	$(MAKE) -f $(THIS) RVU=$(RVU_L) TYPE=nsx build-oss-actual
+	$(MAKE) -f $(THIS) RVU=$(RVU_L) TYPE=nsx deploy-actual DEPLOY_TARGET=L \
+		BASE_FILE=libyaml.so TARGET_BASE_FILE=libyaml.L.so
+
+l-guardian:
+	$(MAKE) -f $(THIS) clean
+	$(MAKE) -f $(THIS) RVU=$(RVU_L) TYPE=nsx build-guardian-actual
+	$(MAKE) -f $(THIS) RVU=$(RVU_L) TYPE=nsx deploy-actual DEPLOY_TARGET=L \
+		BASE_FILE=libyaml.dll TARGET_BASE_FILE=libyaml.L.dll
+
+build-oss-actual:
+	$(info ************************************************************************)
+	$(info Release: libyaml OSS Build)
+	$(info Release: RVU              = $(RVU))
+	$(info Release: COMP_ROOT        = $(COMP_ROOT))
+	$(info ************************************************************************)
+	PATH=$(BUILD_PATH) $(MAKE) -C . -f Makefile.$(TYPE).Nsdee BUILD_PLATFORM=OSS
+
+build-guardian-actual:
+	$(info ************************************************************************)
+	$(info Release: libyaml Guardian Build)
+	$(info Release: RVU              = $(RVU))
+	$(info Release: COMP_ROOT        = $(COMP_ROOT))
+	$(info ************************************************************************)
+	PATH=$(BUILD_PATH) $(MAKE) -C . -f Makefile.$(TYPE).GRD  BUILD_PLATFORM=GRD
+
+deploy-actual:
+	$(info ************************************************************************)
+	$(info Release: Deploy)
+	$(info Release: DEPLOY_TARGET    = $(DEPLOY_TARGET))
+	$(info Release: TARGET_DIR       = $(TARGET_DIR))
+	$(info Release: BASE_FILE        = $(BASE_FILE))
+	$(info Release: TARGET_BASE_FILE = $(TARGET_BASE_FILE))
+	$(info Release: RVU              = $(RVU))
+	$(info ************************************************************************)
+	sh ./deploy.win.sh $(DEPLOY_TARGET) '$(TARGET_DIR)' '$(BASE_FILE)' '$(TARGET_BASE_FILE)'
+
+.PHONY: all clean build-oss-actual build-guardian-actual deploy-actual j-oss j-guardian l-oss l-guardian

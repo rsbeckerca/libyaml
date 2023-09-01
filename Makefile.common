@@ -1,5 +1,3 @@
-include config.mak.uname
-
 VPROC:=$(shell ./vproc.sh BUILDER L01)
 CFLAGS += -Isrc -Iinclude -DDLL_EXPORT -DPIC -DHAVE_CONFIG_H -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
 CFLAGS += -Wnowarn=770,203
@@ -21,14 +19,18 @@ all: pre-make $(TARGET) post-make
 
 pre-make:
 	mkdir -p $(DEST)/NSK
-	$(MAKE) -C include -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM)
+	$(MAKE) -C include -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) \
+		BUILD_PLATFORM=$(BUILD_PLATFORM)
 
 post-make:
-	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM)
+	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) \
+		BUILD_PLATFORM=$(BUILD_PLATFORM)
 
 clean:
-	$(MAKE) -C include -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) clean
-	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) clean
+	$(MAKE) -C include -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) clean \
+		BUILD_PLATFORM=$(BUILD_PLATFORM)
+	$(MAKE) -C tests -f Makefile.$(TARGET_PLATFORM).$(BUILD_PLATFORM) clean \
+		BUILD_PLATFORM=$(BUILD_PLATFORM)
 	rm -rf $(OBJECTS) $(TARGET) $(LIB) $(DEST) *.o *.so *.dll
 
 $(TARGET): $(LIB)

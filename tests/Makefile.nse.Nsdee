@@ -1,8 +1,12 @@
 # Makefile for building via NSDEE J and L series based on build targets
 #
+include ../config.mak.uname
+
 DEST=../Debug/nse/
 CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=oss -WRVU=$(MIN_J_RVU) $(CFLAGS_J)
-LDFLAGS=-Winspect -Wsystype=oss -WRVU=$(MIN_J_RVU) $(CFLAGS_J)
+LDFLAGS=-Winspect -Wsystype=oss -WRVU=$(MIN_J_RVU) $(CFLAGS_J) $(OSS_CFLAGS_J)
+$(info Inner)
+$(info LDFLAGS=$(LDFLAGS))
 LIB=$(DEST)/libyaml.a
 CC=c99
 LD=eld

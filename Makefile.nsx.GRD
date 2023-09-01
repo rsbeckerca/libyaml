@@ -1,5 +1,7 @@
 # Makefile for building via NSDEE J and L series based on build targets
 #
+include config.mak.uname
+
 BUILD_PRODUCT=libyaml
 TARGET_PLATFORM=nsx
 BUILD_PLATFORM=GRD
@@ -8,7 +10,7 @@ TARGET=libyaml.dll
 LIB=Debug/$(TARGET_PLATFORM)/libyaml.a
 DEST=Debug/$(TARGET_PLATFORM)/
 CFLAGS=-Wextensions -O2 $(INCLUDES) -Wsystype=guardian -WRVU=$(MIN_L_RVU)
-LDFLAGS=-set inspect on -set systype guardian
+LDFLAGS=-set inspect on -set systype guardian $(GRD_LD_MODEL_L)
 CC=c99
 LD=xld
 
